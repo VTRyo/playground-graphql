@@ -2,15 +2,15 @@ const { ApolloServer, gql } = require('apollo-server');
 
 const typeDefs = gql`
   type Query{
-    hello: String
+    hello(name: String!): String
   }
-`
+`;
 
 const resolvers = {
   Query: {
-    hello: () => 'Hello world',
+    hello: (parent, args) => `Hello ${args.name}`,
   },
-}
+};
 
 const server = new ApolloServer({ typeDefs, resolvers});
 
